@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+</head>
+<body>
+    <form action="#" method="post">
+        <fieldset>
+            <legend>Name and Address</legend>
+            <label for="civicrm">Do you use CiviCRM?</label>
+            <input type="radio" id="yes" name="civicrm" value="yes"> Yes
+            <input type="radio" id="no" name="civicrm" value="no"> No
+            <a href="#">(unselect)</a>
+            <br><br>
+            <label for="civicrm_duration">How long have you been using CiviCRM?</label>
+            <select id="civicrm_duration" name="civicrm_duration">
+                <option value="">- select -</option>
+            </select>
+            <br><br>
+            <label for="cms">Which CMS do you use?</label>
+            <select id="cms" name="cms">
+                <option value="">- select -</option>
+            </select>
+            <br><br>
+            <label for="skills">Your skill set</label>
+            <select id="skills" name="skills">
+                <option value="">- select -</option>
+            </select>
+            <br><br>
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+            <label for="first_name">First Name *</label>
+            <input type="text" id="first_name" name="first_name" required>
+            <br><br>
+            <label for="last_name">Last Name *</label>
+            <input type="text" id="last_name" name="last_name" required>
+            <br><br>
+            <p>First and last name will be shared with other visitors to the site.</p>
+            <label for="street_address">Street Address (Home)</label>
+            <input type="text" id="street_address" name="street_address">
+            <br><br>
+            <label for="city">City (Home)</label>
+            <input type="text" id="city" name="city">
+            <br><br>
+            <label for="postal_code">Postal Code (Home)</label>
+            <input type="text" id="postal_code" name="postal_code">
+            <br><br>
+            <label for="country">Country (Home)</label>
+            <select id="country" name="country">
+                <option value="us">United States</option>
+            </select>
+            <br><br>
+            <label for="state">State (Home)</label>
+            <select id="state" name="state">
+                <option value="">- select -</option>
+            </select>
+            <br><br>
+            <p>Your state/province and country of residence will be shared with others so folks can find others in their community.</p>
+          </fieldset>
+          <button type="submit">Save</button>
+          <button type="reset">Cancel</button>
+    </form>
+</body>
+</html>
