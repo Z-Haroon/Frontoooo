@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #e0f7fa;
+    }
+
+    .stopwatch {
+      text-align: center;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .display {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #00796b;
+    }
+
+    .time-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time-unit span {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .start {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .pause {
+      background-color: #ff9800;
+      color: white;
+    }
+
+    .reset {
+      background-color: #f44336;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .display {
+        font-size: 2rem;
+        gap: 10px;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stopwatch">
+    <div class="display">
+      <div class="time-unit">
+        <div id="hours">00</div>
+        <span>Hours</span>
+      </div>
+      <div class="time-unit">
+        <div id="minutes">00</div>
+        <span>Minutes</span>
+      </div>
+      <div class="time-unit">
+        <div id="seconds">00</div>
+        <span>Seconds</span>
+      </div>
+      <div class="time-unit">
+        <div id="milliseconds">000</div>
+        <span>Milliseconds</span>
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="start" id="start">Start</button>
+      <button class="pause" id="pause">Pause</button>
+      <button class="reset" id="reset">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    let hours = 0,
+      minutes = 0,
+      seconds = 0,
+      milliseconds = 0;
+    let interval;
+    let isRunning = false;
+
+    const hoursDisplay = document.getElementById('hours');
+    const minutesDisplay = document.getElementById('minutes');
+    const secondsDisplay = document.getElementById('seconds');
+    const millisecondsDisplay = document.getElementById('milliseconds');
+
+    const startButton = document.getElementById('start');
+    const pauseButton = document.getElementById('pause');
+    const resetButton = document.getElementById('reset');
+
+    function updateDisplay() {
+      hoursDisplay.textContent = String(hours).padStart(2, '0');
+      minutesDisplay.textContent = String(minutes).padStart(2, '0');
+      secondsDisplay.textContent = String(seconds).padStart(2, '0');
+      millisecondsDisplay.textContent = String(milliseconds).padStart(3, '0');
+    }
+
+    function startStopwatch() {
+      if (isRunning) return;
+      isRunning = true;
+      interval = setInterval(() => {
+        milliseconds += 1;
+        if (milliseconds >= 1000) {
+          milliseconds = 0;
+          seconds += 1;
+        }
+        if (seconds >= 60) {
+          seconds = 0;
+          minutes += 1;
+        }
+        if (minutes >= 60) {
+          minutes = 0;
+          hours += 1;
+        }
+        updateDisplay();
+      }, 1);
+    }
+
+    function pauseStopwatch() {
+      isRunning = false;
+      clearInterval(interval);
+    }
+
+    function resetStopwatch() {
+      isRunning = false;
+      clearInterval(interval);
+      hours = 0;
+      minutes = 0;
+      seconds = 0;
+      milliseconds = 0;
+      updateDisplay();
+    }
+
+    startButton.addEventListener('click', startStopwatch);
+    pauseButton.addEventListener('click', pauseStopwatch);
+    resetButton.addEventListener('click', resetStopwatch);
+  </script>
+</body>
+</html>
